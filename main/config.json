@@ -1,5 +1,6 @@
 {
   "tasksFile":  "./tasks",
   "monitorsDir": "./monitors",
-  "statusMngr": "localhost"
+  "statusMngr": "localhost",
+  "runInterval": "*/1 * * * *"
 }

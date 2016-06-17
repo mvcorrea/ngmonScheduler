@@ -1,41 +1,53 @@
+'use strict';
 const confs = require('./config');
+const schedule = require('node-schedule');
+
 
 module.exports = {
 
+    start: function(){ return schedule.scheduleJob(confs.runInterval, this.run()); },
+
+    stop: function(){ this.start().cancel(); },
+
 	run: function(){
-        const monitors = this.loadMonitors();
-        const tasks = this.loadTasks();
+        const monitors = this.monitors();
+        const allTasks = this.tasks();
+        var events     = this.events();
 
-        tasks = tasks instanceof Array ? tasks : [tasks];
-        var date = new Date();
-        tasks.forEach(function(tsk){ // each task (with multiple devices)
-            tsk.runId = date.getTime();
-            if(monitors[tsk.module]){ // verify if monitor is installed
-                monitors[tsk.module](tsk, function(err, results){ // run the task with respective module
-                    //console.log(results);
-                    var statusLog = { taskId:tsk.taskId, runId:tsk.runId, tdiff:0, results:results };
-                    console.log(statusLog);
-                    //this.emitStatus(statusLog);
-                });
-            } else console.log("module not installed: "+ tsk.module);
-        });
+        return function(){ // scheduler needs a function
+            var date = new Date().toISOString();
+            console.log('scheduler> '+ date.replace(/T/, ' ').replace(/\..+/, ''));
 
+            var tasks = allTasks instanceof Array ? allTasks : [allTasks];
+            var date = new Date();
+            tasks.forEach(function(tsk){ // each task (with multiple devices)
+                //console.log(JSON.stringify(tsk));
+                tsk.runId = date.getTime();
+                if(monitors[tsk.module]){ // verify if monitor is installed
+                    monitors[tsk.module](tsk, events);  // TODO: verify recurrence
+                } else console.log("module not installed: "+ tsk.module);
+            });
+        }
     },
 
-    emitStatus: function(statusLog){
-        console.log(statusLog);
+    events: function(){
+        return function(err, results){
+            if(err) console.log("Error:" + err);
+            console.log(JSON.stringify(results));
+        }
     },
 
-	loadTasks: function(){
+	tasks: function(){
         console.log('> loading tasks');
+        // TODO: load tasks from a database
         const tasks = require(confs.tasksFile).tasks;
         return tasks;
 	},
 
-	loadMonitors: function(){
+	monitors: function(){
         console.log('> loading monitors');
         const monitors = require(confs.monitorsDir);
         return monitors;
     }
 
-}
+};

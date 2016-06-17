@@ -13,6 +13,7 @@
   "author": "Marcelo Correa <mvcorrea@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "net-ping": "^1.2.0"
+    "net-ping": "^1.2.0",
+    "node-schedule": "^1.1.0"
   }
 }

@@ -1,8 +1,9 @@
 # ngmonScheduler
 scheduler used in ngmon
+
 attempt to translate the [moncgi](http://moncgi.sourceforge.net/index.php/mon.cgi/main) in javascript
 
-more other links on the original mon [1], [2], [3], [4] which was written in perl
+more links on the original mon [1], [2], [3], [4] which was written in perl
 
 must connect to an ngmonStatusManager
 
@@ -11,7 +12,7 @@ must connect to an ngmonStatusManager
 
 ### Components:
   * ngmonStatusManager: main component
-  * ngmonSchedulerManager: task scheduler management
+  * **ngmonSchedulerManager**: task scheduler management
   * ngmonAlertManager: alarm management
   * ngmonClientManager: web client component
   * ngmonTrapManager: trap daemon management

@@ -11,7 +11,7 @@ module.exports = function(env, cb) {
     };
 
     function normalize(dev, stat){
-        return {device: dev, status: stat};
+        return {env: env.taskId+":"+env.runId, device: dev, status: stat};
     }
 
     var session = ping.createSession(options);
