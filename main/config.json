@@ -1,0 +1,5 @@
+{
+  "tasksFile":  "./tasks",
+  "monitorsDir": "./monitors",
+  "statusMngr": "localhost"
+}
