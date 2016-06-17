@@ -10,6 +10,16 @@
       "desc": "simple ping",
       "module": "ping",
       "results": null
+    },
+    {
+      "devs": ["208.67.222.222", "208.67.220.220", "139.130.4.5", "198.153.192.1", "198.153.194.2", "216.58.208.14"],
+      "args": { "port": 80 },
+      "taskId": "2WEKaVNO",
+      "runId": null,
+      "name": "task 02",
+      "desc": "portscanner on port 80",
+      "module": "portscanner",
+      "results": null
     }
   ]
 }

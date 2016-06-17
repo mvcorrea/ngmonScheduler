@@ -9,7 +9,7 @@ module.exports = {
 
     stop: function(){ this.start().cancel(); },
 
-	run: function(){
+    run: function(){
         const monitors = this.monitors();
         const allTasks = this.tasks();
         var events     = this.events();
@@ -37,17 +37,16 @@ module.exports = {
         }
     },
 
-	tasks: function(){
+    tasks: function(){
         console.log('> loading tasks');
         // TODO: load tasks from a database
         const tasks = require(confs.tasksFile).tasks;
         return tasks;
-	},
+    },
 
-	monitors: function(){
+    monitors: function(){
         console.log('> loading monitors');
         const monitors = require(confs.monitorsDir);
         return monitors;
     }
-
 };
