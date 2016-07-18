@@ -2,5 +2,11 @@
   "tasksFile":  "./tasks",
   "monitorsDir": "./monitors",
   "statusMngr": "localhost",
-  "runInterval": "*/1 * * * *"
+  "runInterval": "*/1 * * * *",
+  "zmq": {
+    "port": 5000
+  },
+  "repl":{
+    "port": 5001
+  }
 }
