@@ -1,3 +1,5 @@
+const globals = require('./globals');
+
 module.exports = function(env, cb) {
     const ping = require('net-ping');
     var devices = env.devs;
@@ -10,18 +12,14 @@ module.exports = function(env, cb) {
         ttl: 128
     };
 
-    function normalize(dev, stat){
-        return {env: env.taskId+"."+env.runId, device: dev, status: stat};
-    }
-
     var session = ping.createSession(options);
 
     devices.forEach(function(dev){
         session.pingHost(dev, function(err, dev){
             if(err){
-                cb(null, normalize(dev, -1)); // unreachable
+                cb(null, globals.normalize(env, dev, -1)); // unreachable
             } else {
-                cb(null,  normalize(dev, 0));
+                cb(null, globals.normalize(env, dev, 0));
             }
         });
     });

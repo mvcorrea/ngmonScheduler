@@ -40,9 +40,12 @@ module.exports = {
     events: function(){
         return function(err, results){
             if(err) console.log("Error:" + err);
-            //console.log(JSON.stringify(results));
-            var taskId = (results.env. split('.'))[0] // attach event to a zmq task
-            publisher.send([confs.queueId+"."+taskId, JSON.stringify(results)]);    // <- enqueue  results
+           // console.log(JSON.stringify(results));
+           // var taskId = (results.env.split('.'))[0] // attach event to a zmq task
+           // publisher.send([confs.queueId+"."+taskId, JSON.stringify(results)]);    // <- enqueue  results
+
+           // first element of the array is the queue name "srv.tsk" you could register to a single task
+            publisher.send([confs.queueId+"."+results.task, JSON.stringify(results)]);    // <- enqueue  results
         }
     },
 
@@ -54,7 +57,7 @@ module.exports = {
     },
 
     monitors: function(){
-        console.log('> loading monitors');
+        console.log('> loading globals');
         const monitors = require(confs.monitorsDir);
         return monitors;
     }
