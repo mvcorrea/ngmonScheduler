@@ -1,4 +1,5 @@
 {
+  "queueId": "server01",
   "tasksFile":  "./tasks",
   "monitorsDir": "./monitors",
   "statusMngr": "localhost",

@@ -5,7 +5,7 @@ const schedule = require('node-schedule');
 // TODO: put in a function
 // zeromq publisher ( install libs first: "brew install pkg-config zmq" on OSX)
 // simple setup.... see "subs.js" for a simple command line subscriber implementation
-const zmq = require('zmq')
+const zmq = require('zmq');
 const publisher = zmq.socket('pub');
 publisher.bind('tcp://*:'+confs.zmq.port, (err) => console.log("> listening for ZMQ Subscribers on port:"+ confs.zmq.port));
 
@@ -41,7 +41,8 @@ module.exports = {
         return function(err, results){
             if(err) console.log("Error:" + err);
             //console.log(JSON.stringify(results));
-            publisher.send(JSON.stringify(results));
+            var taskId = (results.env. split('.'))[0] // attach event to a zmq task
+            publisher.send([confs.queueId+"."+taskId, JSON.stringify(results)]);    // <- enqueue  results
         }
     },
 

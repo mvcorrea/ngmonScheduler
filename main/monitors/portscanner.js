@@ -5,7 +5,7 @@ module.exports = function(env, cb) {
     var port    = env.args.port;  // TODO: multiple ports
 
     function normalize(env, dev, stat){
-        return {env: env.taskId+":"+env.runId, device: dev, status: stat};
+        return {env: env.taskId+"."+env.runId, device: dev, status: stat};
     }
 
     devices.forEach(function(dev){
