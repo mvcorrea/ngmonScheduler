@@ -25,10 +25,10 @@ configure(subscriber);
 // usage: node sub.app
 
 subscriber.on('message', function(topic, data){
-    //console.log(JSON.parse(data));
-    let message = JSON.parse(data),
-        ts = (message.env.split('.'))[1],
-        date = new Date(parseInt(ts));
-
-    console.log(date.toISOString()+": "+topic+": "+data);
+    console.log(JSON.parse(data));
+    //let message = JSON.parse(data),
+    //    ts = (message.env.split('.'))[1],
+    //    date = new Date(parseInt(ts));
+    //
+    //console.log(date.toISOString()+": "+topic+": "+data);
 });

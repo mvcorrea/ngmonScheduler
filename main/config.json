@@ -1,6 +1,7 @@
 {
   "queueId": "server01",
   "tasksFile":  "./tasks",
+  "equipFile":  "./equip",
   "monitorsDir": "./monitors",
   "statusMngr": "localhost",
   "runInterval": "*/1 * * * *",
