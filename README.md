@@ -11,7 +11,7 @@ must connect to an ngmonStatusManager
 ## About:
 
 ### Components:
-  * ~~ngmonManager~: main component
+  * ~~ngmonManager~~: main component
   * _**ngmonScheduler**_: task scheduler management
   * [ngmonMonitor]: web client component
   * ~~ngmonAlert~~: alarm management
