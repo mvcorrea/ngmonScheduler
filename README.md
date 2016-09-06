@@ -11,11 +11,11 @@ must connect to an ngmonStatusManager
 ## About:
 
 ### Components:
-  * ngmonStatusManager: main component
-  * **ngmonSchedulerManager**: task scheduler management
-  * ngmonAlertManager: alarm management
-  * ngmonClientManager: web client component
-  * ngmonTrapManager: trap daemon management
+  * ngmonManager: main component
+  * **_[ngmonScheduler]_**: task scheduler management
+  * [ngmonMonitor]: web client component
+  * ngmonAlert: alarm management
+  * ngmonTrap: trap daemon management
 
 ## Installation:
 
@@ -33,3 +33,5 @@ todo
 [2]: https://sourceforge.net/projects/mon/
 [3]: http://ftp.kernel.org/pub/software/admin/mon/
 [4]: http://www.debianhelp.co.uk/mon.htm
+[ngmonSchedulerManager]: https://github.com/mvcorrea/ngmonScheduler.git
+[ngmonMonitor]: https://github.com/mvcorrea/ngmonMonitor.git
