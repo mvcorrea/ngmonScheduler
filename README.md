@@ -12,7 +12,7 @@ must connect to an ngmonStatusManager
 
 ### Components:
   * ngmonManager: main component
-  * ** [ngmonScheduler] **: task scheduler management
+  * **[ngmonScheduler]**: task scheduler management
   * [ngmonMonitor]: web client component
   * ngmonAlert: alarm management
   * ngmonTrap: trap daemon management
