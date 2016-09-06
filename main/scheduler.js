@@ -1,5 +1,5 @@
 'use strict';
-const confs = require('./config');
+const confs = require('./configs/config');
 const schedule = require('node-schedule');
 var events = {}; //  all ocurrencies object
 
@@ -10,11 +10,9 @@ var events = {}; //  all ocurrencies object
 const zmq = require('zmq');
 const publisher = zmq.socket('pub');
 publisher.bind('tcp://*:'+confs.zmq.port,
-                (err) => console.log("> listening for ZMQ Subscribers on port:"+ confs.zmq.port));
-
-
+    (err) => console.log("> listening for ZMQ Subscribers on port:" + confs.zmq.port)
+)
 module.exports = {
-
     start: function(){ return schedule.scheduleJob(confs.runInterval, this.run()); },
 
     once: function(){ this.run(); },
@@ -27,7 +25,6 @@ module.exports = {
         const allTasks = this.tasks();
         const update   = this.update;
         const enqueue  = this.enqueue;
-        const delay  = this.delay;
 
         var tasks = allTasks instanceof Array ? allTasks : [allTasks];
 
@@ -52,29 +49,13 @@ module.exports = {
                     prm.then( update ).then( enqueue );//.then( JSON.stringify ).then( console.log );
                 });
             });
-
         };
-    },
 
-    delay: function(ms) {
-    return new Promise(function (resolve, reject) {
-        setTimeout(resolve, ms); // (A)
-    });
-    },
-
-    buildTasks: function(){
-        var date = new Date().toISOString();
-        console.log('scheduler> '+ date.replace(/T/, ' ').replace(/\..+/, ''));
-    },
-
-    toType: function(obj) {
-        return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
     },
 
     update: function(tsk){ //monitors, tsk
         var eventName = tsk.device + '@' + tsk.task;
         return new Promise((resolve, reject) => {
-
             if(tsk.status < 0) {            // fail
                 if(!events[eventName]) {    // new fail
                     tsk.elapsed = 0;
@@ -98,21 +79,8 @@ module.exports = {
 
     enqueue: function(tsk){
         return new Promise((resolve, reject) => {
-                resolve(publisher.send([confs.queueId+"."+tsk.task, JSON.stringify(tsk)]));
-            });
-    },
-
-
-    events: function(){
-        return function(err, results){
-            if(err) console.log("Error:" + err);
-           // console.log(JSON.stringify(results));
-           // var taskId = (results.env.split('.'))[0] // attach event to a zmq task
-           // publisher.send([confs.queueId+"."+taskId, JSON.stringify(results)]);    // <- enqueue  results
-
-           // first element of the array is the queue name "srv.tsk" you could register to a single task
-            publisher.send([confs.queueId+"."+results.task, JSON.stringify(results)]);    // <- enqueue  results
-        }
+            resolve(publisher.send([confs.queueId+"."+tsk.task, JSON.stringify(tsk)]));
+        });
     },
 
     tasks: function(){
@@ -133,4 +101,4 @@ module.exports = {
         const equips = require(confs.equipFile);  // function array with task implementation
         return equips;
     }
-};
+}

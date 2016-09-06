@@ -1,5 +1,5 @@
 'use strict';
-const confs = require('./config');
+const confs = require('./configs/config');
 const net = require('net');
 const repl = require('repl');
 const util = require('util');  // console.log(util.inspect(myObject, {showHidden: false, depth: null}));

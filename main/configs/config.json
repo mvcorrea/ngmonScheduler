@@ -1,8 +1,8 @@
 {
   "queueId": "server01",
-  "tasksFile":  "./tasks",
-  "equipFile":  "./equip",
-  "monitorsDir": "./monitors",
+  "tasksFile":  "./configs/tasks",
+  "equipFile":  "./configs/equip",
+  "monitorsDir": "././monitors",
   "statusMngr": "localhost",
   "runInterval": "*/1 * * * *",
   "zmq": {

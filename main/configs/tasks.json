@@ -1,0 +1,24 @@
+{
+  "tasks":[
+    {
+      "dev": null,
+      "args": {},
+      "taskId": "dogPzIz8",
+      "runId": null,
+      "name": "task 01",
+      "desc": "simple ping",
+      "module": "ping",
+      "results": null
+    },
+    {
+      "dev": null,
+      "args": { "port": 80 },
+      "taskId": "2WEKaVNO",
+      "runId": null,
+      "name": "task 02",
+      "desc": "simple portscanner on port 80",
+      "module": "portscanner",
+      "results": null
+    }
+  ]
+}
